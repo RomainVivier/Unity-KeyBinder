@@ -10,20 +10,20 @@ It also lets you save and load your preferences and change the bind inputs/funct
 
 The KeyBinder is based on two classes :
 
-  1. KeyConfig define by the following members
+1. KeyConfig define by the following members
 ⋅⋅* bool isAxis (precise if it is a button or an axis like mouse wheel, gamepad joystick, etc.)
 ⋅⋅* KeyCode KeyName (for buttons)
 ⋅⋅* string  AxisName (for axes, must be define in Unity inputs)
 
-  2. ActionConfig (abstract)
+2. ActionConfig (abstract)
 ⋅⋅* KeyType Category (use to sort action in GUI)
 ⋅⋅* int Order (use to sort action in a same category)
 
-  * KeyActionConfig (extend ActionConfig)
+* KeyActionConfig (extend ActionConfig)
 ⋅⋅* Action KeyDownAction (action triggered to on button down event)
 ⋅⋅* Action KeyUpAction (action triggered to on button up event)
 
-  * AxisActionConfig (extend ActionConfig)
+* AxisActionConfig (extend ActionConfig)
 ⋅⋅* Action<float> AxisAction (action passed with pression float value)
 
 
