@@ -141,7 +141,7 @@ Then you just have to call DefineAction to set the corresponding action :
 void DefineActions(string keyId, ActionConfig config)
 ```
 
-This way you will have your binds define from the start with empty actions, but the players will be able to setis own bind.
+This way you will have your binds define from the start with empty actions, but the players will be able to set is own bind.
 
 Last details to use it. Axis can only be change for another axis and same goes for the keies.
 
