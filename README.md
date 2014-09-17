@@ -8,7 +8,7 @@ It also lets you save and load player preferences from the Unity player prefs an
 
 ## Architecture :
 
-The keybinder use to main concepts: Actions and Bindings. Actions are defined by the developer, Bindings are filled by the player (But the developer would be well inspired to provide default bindings.)
+The keybinder use two main concepts: Actions and Bindings. Actions are defined by the developer, Bindings are filled by the player (But the developer would have to provide default bindings.)
 
   * Actions, as you may suppose, are actions in the game (ie firing, turning left, strafing right, etc...). There are two kind of actions: *KeyActionConfig* that can be binded to keys and *AxisActionConfig* that can be binded to axis controls (joystick axis, triggers, etc..)
   * Bindings are defined through the *KeyConfig* class, and map a key (or an axis) to a developer defined action.
