@@ -1,33 +1,34 @@
-# What does it provide to you ?
+# What does this do ?
 
-it allows you to centralize the functions related to different possible inputs and not to verify them each frame, create automation, controls, debugs, etc.
+This is a simple and easy to use keybinding system for Unity3D. It allows you to centralize the functions related to different possible inputs so that you can avoid verifying them each frame and hardcode everything. Furthermore, as it decouple the actual keybinding from the game action, it makes it easy to do automation, Keybinding GUIs, debugs, etc.
 
-It also lets you save and load your preferences and change the bind inputs/functions through a GUI sorted by KeyType (Attack, Movement, Dodge, Menus, etc.) free to you to redefine the keytype depending on your need.
+It also lets you save and load player preferences from the Unity player prefs and change the bind inputs/functions through a GUI sorted by KeyType (Attack, Movement, Dodge, Menus, etc.). Feel free to redefine the keytype depending on your need.
 
-# How to use it ?
+# How do I use it ?
 
 ## Architecture :
 
-The KeyBinder is based on two classes :
+The keybinder use to main concepts: Actions and Bindings. Actions are defined by the developer, Bindings are filled by the player (But the developer would be well inspired to provide default bindings.)
 
-1. KeyConfig define by the following members
+  * Actions, as you may suppose, are actions in the game (ie firing, turning left, strafing right, etc...). There are two kind of actions: *KeyActionConfig* that can be binded to keys and *AxisActionConfig* that can be binded to axis controls (joystick axis, triggers, etc..)
+  * Bindings are defined through the *KeyConfig* class, and map a key (or an axis) to a developer defined action.
+
+1. KeyConfig
 
    * bool isAxis (precise if it is a button or an axis like mouse wheel, gamepad joystick, etc.)
    * KeyCode KeyName (for buttons)
    * string  AxisName (for axes, must be define in Unity inputs)
 
-2. ActionConfig (abstract)
-
-   * KeyType Category (use to sort action in GUI)
-   * int Order (use to sort action in a same category)
 
 * KeyActionConfig (extend ActionConfig)
-
+   * KeyType Category (use to sort action in GUI)
+   * int Order (use to sort action in a same category)
    * Action KeyDownAction (action triggered to on button down event)
    * Action KeyUpAction (action triggered to on button up event)
 
 * AxisActionConfig (extend ActionConfig)
-
+   * KeyType Category (use to sort action in GUI)
+   * int Order (use to sort action in a same category)
    * Action<float> AxisAction (action passed with pression float value)
 
 
@@ -45,37 +46,41 @@ Dictionary< string, ActionConfig >
 ```
 The strings here are the unique ids respresenting the ActionConfigs as precised just before.
 
-## Setting the binds :
-
-There is only two functions to set the binds :
-
-#### Keyconfig
-
-Setting KeyConfig for button :
-```
-public void SetKeyBind(KeyCode input, string keyId)
-```
-For axis : 
-```
-public void SetKeyBind(string input, string keyId)
-```
-
-#### ActionConfig
-```
-public void DefineActions(string keyId, ActionConfig config)
-```
-
-
-#### Important fact :
-
-I use function “FetchAxis()” in class KeyFunctions to detect if an Axis is pressed when you try changing a bind with the GUI. This function work with list of string corresponding to the name of the Unity inputs you must define.
-
-KeyBinder is a singleton. That mean you don’t need to create a gameobject with an instance of it. You just need to call this member instance to use it like this :
+## Getting a Keybinder instance
+It' (almost) magic. You don't need to create a game object for that, or anything else. Just add the source and get the Keybinder through the Instance property.
 
 ```
 KeyBinder.Instance
 ```
 
+## Defining actions
+```
+public void DefineActions(string keyId, ActionConfig config)
+```
+Use the define action method with the required ActionConfig to add an action to the keybinder.
+
+## Defining Bindings
+
+Use the following 
+
+Setting KeyConfig for a key :
+```
+public void SetKeyBind(KeyCode input, string keyId)
+```
+For an axis : 
+```
+public void SetKeyBind(string input, string keyId)
+```
+##Stopping the keybinder from calling actions on keypress.
+```
+ApplyAction = false
+```
+To restart the keybinder, just set the ApplyAction property to true.
+
+###Important!
+Unity does not provide ways to get a list of available axis controls for your game. The keybinder use the method “FetchAxis()” in class "KeyFunctions" (KeyBindRefs.cs) to know the list of Axis to check when you try changing a bind with the GUI. Change the list of string to match the axis you defined in the Unity input system (Edit>Project Settings>Input ) 
+
+#Examples
 Here is two example on how to register a key bind :
 
 For a key :
