@@ -145,4 +145,4 @@ This way you will have your binds define from the start with empty actions, but 
 
 Last details to use it. Axis can only be change for another axis and same goes for the keies.
 
-I hope it might help you, if you encounter problems don’t hesitate to report them to me.
+I hope it might help you, if you encounter problems don’t hesitate to report them to me. Don't hesitate also to give me advices to improve it.
