@@ -18,7 +18,7 @@ public class Keyfunctions
 
     public static string FetchAxis()
     {
-        foreach(string axis in KeyBindRef.Axes)
+        foreach(string axis in KeyBindRefs.Axes)
         {
             if(Input.GetAxis(axis) != 0)
                 return axis;

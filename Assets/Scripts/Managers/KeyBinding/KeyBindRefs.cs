@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public static class KeyBindRef
+public static class KeyBindRefs
 {
 
     public static Dictionary<KeyConfig, List<string>> DefaultBindsRefs
@@ -12,7 +12,8 @@ public static class KeyBindRef
         {
             var temp = new Dictionary<KeyConfig, List<string>>();
             temp.Add(new KeyConfig(KeyCode.A), new List<string>{"AButton"});
-            temp.Add(new KeyConfig("Vertical"), new List<string>{"VerticalTest"});
+			temp.Add(new KeyConfig("Vertical"), new List<string>{"VerticalTest"});
+			temp.Add(new KeyConfig(KeyCode.Tab), new List<string>{"KeyBindGUI"});
 
             return temp;
         }
@@ -24,7 +25,8 @@ public static class KeyBindRef
         {
             var temp = new Dictionary<string, ActionConfig>();
             temp.Add("AButton", new KeyActionConfig(KeyType.Action, 0, null, null));
-            temp.Add("VerticalTest", new AxisActionConfig(KeyType.Action, 0, null));
+			temp.Add("VerticalTest", new AxisActionConfig(KeyType.Action, 0, null));
+			temp.Add("KeyBindGUI", new KeyActionConfig(KeyType.Menu, 0, null, null));
 
             return temp;
         }
@@ -47,4 +49,9 @@ public static class KeyBindRef
             };
         }
     }
+
+	public static string ChangingKey = "";
+	public static KeyConfig LastInput;
+	public static bool isStop = false;
+
 }
