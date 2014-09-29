@@ -198,7 +198,27 @@ public class KeyBinder : MonoBehaviour
 		
 		_actionBinds.Remove(keyId);
 	}
-	
+
+	public void EmptyAction(string actionId)
+	{
+		if (actionId == null)
+			Debug.LogError("actionId can't be null in EmptyAction");
+		
+		var actionConf = _actionBinds[actionId];
+		
+		if(actionConf == null)
+			return;
+		
+		_actionBinds.Remove(actionId);
+		
+		if(actionConf.GetType() == typeof(KeyActionConfig))
+		{
+			DefineActions(actionId, new KeyActionConfig(actionConf.Category, actionConf.Order, null, null));
+		}else{
+			DefineActions(actionId, new AxisActionConfig(actionConf.Category, actionConf.Order, null));
+		}
+	}
+
 	//    public void RemoveDownBind(string keyId)
 	//    {
 	//        if (keyId == null)
