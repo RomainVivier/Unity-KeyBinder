@@ -52,6 +52,5 @@ public static class KeyBindRefs
 
 	public static string ChangingKey = "";
 	public static KeyConfig LastInput;
-	public static bool isStop = false;
 
 }

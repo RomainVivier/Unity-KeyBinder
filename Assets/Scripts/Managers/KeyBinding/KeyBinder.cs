@@ -9,7 +9,8 @@ using System.Linq;
 
 public class KeyBinder : MonoBehaviour
 {
-	
+
+	public static bool HasStopped {get; private set;}
 	public bool ApplyAction { get; set; }
 	public Timer KeyChangeTimer {get; set;}
 	
@@ -296,7 +297,7 @@ public class KeyBinder : MonoBehaviour
 	
 	void OnApplicationQuit()
 	{
-		KeyBindRefs.isStop = true;
+		KeyBinder.HasStopped = true;
 	}
 	
 }
